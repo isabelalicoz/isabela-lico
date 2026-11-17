@@ -1,0 +1,77 @@
+# Pages CMS configuration: this creates the "Articles" form at app.pagescms.org
+media:
+  input: images/uploads
+  output: /images/uploads
+  rename: safe
+  categories: [image]
+
+content:
+  - name: articles
+    label: Articles
+    type: file
+    path: data/articles.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Publication date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: lang
+        label: Language of the article
+        type: select
+        required: true
+        options:
+          values:
+            - name: pt
+              label: Portuguese
+            - name: en
+              label: English
+      - name: source
+        label: Publication
+        type: select
+        required: true
+        options:
+          values: ["JPN", "Público", "Odds & Ends"]
+      - name: column
+        label: Column
+        type: select
+        required: true
+        options:
+          values:
+            - name: news
+              label: News
+            - name: features
+              label: Features
+            - name: "odds&ends"
+              label: Odds & Ends
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+        description: "Short topic words, e.g. culture, music, politics"
+      - name: excerpt
+        label: Summary (shown on the cards and the article page)
+        type: text
+      - name: preview
+        label: Opening lines (shown in italics on the article page)
+        type: text
+      - name: url
+        label: Link to the original article
+        type: string
+        description: "Leave empty for pieces that only exist on your site (e.g. Odds & Ends)."
+      - name: image
+        label: Image
+        type: image
+      - name: slug
+        label: Page address (optional)
+        type: string
+        description: "Leave empty and it is created from the title."
+    view:
+      primary: title
